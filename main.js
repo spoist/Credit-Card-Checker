@@ -52,5 +52,25 @@ let findInvalidCards = checkThisBatch => {
   return invalidCards;
 }
 
-console.log(findInvalidCards(batch));
+let idInvalidCardCompanies = invalidCards => {
+  const companies = {
+    3: 'Amex (American Express',
+    4: 'Visa',
+    5: 'Mastercard',
+    6: 'Discover',
+  };
+  let issuers = [];
+  for (const card of invalidCards) {
+    const firstElement = card[0]; // Get the 0th element of the card array
+    if (companies.hasOwnProperty(firstElement)) { // Check if key exists
+      issuers.push(companies[firstElement]);
+    } else {
+      // Handle cases where the card ID is not in the companies object
+      issuers.push('Company not found');
+    }
+  }
+  return [...new Set(issuers)];
+}
+
+console.log(idInvalidCardCompanies(findInvalidCards(batch)));
 
