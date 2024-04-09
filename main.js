@@ -37,22 +37,20 @@ let validateCred = inArray => {
   for (let j=inArray.length-1; j>=0; j-=2) {
     otherNumbers += inArray[j];
   }
-  // console.log('everyOther: ' + everyOther);
-  // console.log('otherNumbers: ' + otherNumbers);
+
   const cumulated = (everyOther + otherNumbers) % 10;
-  // console.log('cumulated: ' + cumulated);
   return cumulated === 0;
 }
 
-console.log(validateCred(valid1));
-console.log(validateCred(valid2));
-console.log(validateCred(valid3));
-console.log(validateCred(invalid1));
-console.log(validateCred(invalid2));
-console.log(validateCred(invalid3));
-console.log(validateCred(mystery1));
-console.log(validateCred(mystery2));
-console.log(validateCred(mystery3));
-console.log(validateCred(mystery4));
-console.log(validateCred(mystery5));
+let findInvalidCards = checkThisBatch => {
+  let invalidCards = [];
+  for (toCheck of checkThisBatch) {
+    if (!validateCred(toCheck)) {
+      invalidCards.push(toCheck);
+    }
+  };
+  return invalidCards;
+}
+
+console.log(findInvalidCards(batch));
 
