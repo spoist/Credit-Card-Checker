@@ -24,11 +24,35 @@ const batch = [valid1, valid2, valid3, valid4, valid5, invalid1, invalid2, inval
 
 
 // Add your functions below:
+let validateCred = inArray => {
+  let everyOther = 0;
+  let otherNumbers = 0;
+  for (let i=inArray.length-2; i>=0; i-=2) {
+    if (inArray[i]*2 <= 9) {
+      everyOther += inArray[i]*2;
+    } else {
+      everyOther += inArray[i]*2-9;
+    }
+  }
+  for (let j=inArray.length-1; j>=0; j-=2) {
+    otherNumbers += inArray[j];
+  }
+  // console.log('everyOther: ' + everyOther);
+  // console.log('otherNumbers: ' + otherNumbers);
+  const cumulated = (everyOther + otherNumbers) % 10;
+  // console.log('cumulated: ' + cumulated);
+  return cumulated === 0;
+}
 
-
-
-
-
-
-
+console.log(validateCred(valid1));
+console.log(validateCred(valid2));
+console.log(validateCred(valid3));
+console.log(validateCred(invalid1));
+console.log(validateCred(invalid2));
+console.log(validateCred(invalid3));
+console.log(validateCred(mystery1));
+console.log(validateCred(mystery2));
+console.log(validateCred(mystery3));
+console.log(validateCred(mystery4));
+console.log(validateCred(mystery5));
 
